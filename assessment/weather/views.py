@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 import requests
 
@@ -97,8 +97,6 @@ def weather(request, lat=None, lon=None, **kwargs):
         site_filters = set(kwargs.values())
         if not site_filters.issubset({'accuweather', 'noaa', 'weather.com'}):
             return HttpResponse('Unsupported site filter supplied. We currently support accuweather, noaa, and weather.com.')
-        # assert site_filters.issubset({'accuweather', 'noaa', 'weather.com'}), \
-        #     'Unsupported site filter supplied. We currently support accuweather, noaa, and weather.com.'
 
     # Verify the lat and lon are numeric.
     try:
@@ -139,4 +137,4 @@ def weather(request, lat=None, lon=None, **kwargs):
     # Round to whole number for clean output.
     average_temp = int(average_temp)
 
-    return HttpResponse("{average_temp} degrees Fahrenheit.".format(average_temp=average_temp))
+    return JsonResponse({'average_fahrenheit_temperature': average_temp})
