@@ -7,3 +7,5 @@ The URL that will return the average temperature for a given lat / lon is as fol
 `http://127.0.0.1:8000/weather/<lat>/<lon>/<site_filter_1>/<site_filter_2>`
 
 The URL accepts 0-2 site filters.
+
+Most of the relevant work is in two files: `weather.views.py` and `weather.urls.py`.
